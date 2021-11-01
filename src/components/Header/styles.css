@@ -1,0 +1,47 @@
+#main-header {
+  background-color: #222;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 100px;
+}
+
+#title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+#title img:hover {
+  animation: rotate .5s infinite alternate;
+}
+
+@keyframes rotate {
+  0% {
+      transform: rotate(20deg);
+  }
+  100% {
+      transform: rotate(-20deg);
+  }
+}
+
+#main-header h1 {
+  color: #fff;
+}
+
+#main-header h1 span {
+  color: #ff3d00;
+}
+
+#scoreboard {
+  font-size: 18px;
+}
+
+#scoreboard #current {
+  color: #ff3d00;
+}
+
+#scoreboard #best {
+  color: #fff;
+}
