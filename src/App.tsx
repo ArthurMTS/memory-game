@@ -8,9 +8,7 @@ export function App() {
   return (
     <>
       <Header />
-      <div className="App">
-        <Cardboard />
-      </div>
+      <Cardboard />
       <Footer />
     </>
   );

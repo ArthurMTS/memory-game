@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 8vw;
+  width: 120px;
   box-shadow: 5px 5px 5px #222;
   transition: all .2s;
 }
