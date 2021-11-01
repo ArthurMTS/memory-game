@@ -1,0 +1,24 @@
+.card {
+  border: 2px solid #222;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 8vw;
+  box-shadow: 5px 5px 5px #222;
+  transition: all .2s;
+}
+
+.card:hover {
+  transform: scale(1.1);
+}
+
+.card .sprite {
+  border-bottom: 2px solid #222;
+}
+
+.card .pokemon-name {
+  padding: 5px 0;
+}
