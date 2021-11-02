@@ -31,7 +31,7 @@ export function ScoreProvider({ children }: ScoreProviderProps) {
     if (current > 0 && current > best) {
       setBest(current);
     }
-  }, [current]);
+  }, [current, best]);
 
   return (
     <ScoreContext.Provider value={{ current, setCurrent, best, setBest }}>

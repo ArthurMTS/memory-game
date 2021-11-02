@@ -69,7 +69,7 @@ export function Cardboard() {
         setCards(cards + 2);
       }
     } else {
-      history.go();
+      window.location.reload();
     }
   }
 
