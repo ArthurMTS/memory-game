@@ -1,30 +1,22 @@
-import { useContext, useEffect, useState } from "react";
-
-import { Card } from "../Card";
-
+import React from "react";
+import { Card } from "../../components/Card";
 import { api } from "../../services/api";
 import { getRandomNumbers } from "../../utils/getRandomNumbers";
 import { shuffle } from "../../utils/shuffleArray";
 import { ScoreContext } from "../../contexts/score";
+import { Pokemon } from "./types";
+import { Loader } from "../../components/Loader";
+import { Box } from "@material-ui/core";
+import { useStyles } from "./CardBoard.styles";
 
-import pokeball from '../../assets/pokeball.png';
+export const CardBoard: React.FC = () => {
+  const styles = useStyles();
+  const [pokemons, setPokemons] = React.useState([] as Pokemon[]);
+  const [cards, setCards] = React.useState(12);
+  const { current, setCurrent } = React.useContext(ScoreContext);
 
-import './styles.css';
-
-type Pokemon = {
-  name: string;
-  sprite: string;
-  clicked: boolean;
-};
-
-export function Cardboard() {
-  const [pokemons, setPokemons] = useState([] as Pokemon[]);
-  const [cards, setCards] = useState(12);
-
-  const { current, setCurrent } = useContext(ScoreContext);
-
-  useEffect(() => {
-    async function handleRequest() {
+  React.useEffect(() => {
+    const handleRequest = async () => {
       const randomArr = getRandomNumbers(898, cards);
 
       const pkmArr = randomArr.map(async (pkmId) => {
@@ -48,14 +40,14 @@ export function Cardboard() {
     handleRequest();
   }, [cards]);
 
-  function handleShuffle() {
+  const handleShuffle = () => {
     const toBeShuffled = [...pokemons];
     const shuffled = shuffle(toBeShuffled);
 
     setPokemons(shuffled);
-  }
+  };
 
-  function handleClick(index: number) {
+  const handleClick = (index: number) => {
     if (!pokemons[index].clicked) {
       setCurrent(current + 1);
 
@@ -71,12 +63,12 @@ export function Cardboard() {
     } else {
       window.location.reload();
     }
-  }
+  };
 
   return (
-    <div id='cardboard'>
+    <Box component="main" className={styles.cardBoardWrapper}>
       <h2>Choose your pokémons</h2>
-      <div id='cards'>
+      <Box className={styles.cardsWrapper}>
         {
           pokemons.length > 0 ?
             pokemons.map(({ name, sprite }, index) => 
@@ -86,14 +78,11 @@ export function Cardboard() {
                 name={name}
                 sprite={sprite}
                 handler={handleClick}
-              />) 
+              />)
             :
-            <div id='loading'>
-              <img src={pokeball} alt='pokeball icon' />
-              Loading...
-            </div>
+            <Loader />
         }
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }

@@ -1,0 +1,5 @@
+export type Pokemon = {
+  name: string;
+  sprite: string;
+  clicked: boolean;
+};
